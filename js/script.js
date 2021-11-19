@@ -21,6 +21,6 @@ function Hide(element) {
 const date = new Date();
 const msg = document.querySelector('.msg');
 
-if (date.getDate() == 19) {
+if (date.getDate() == 25) {
     msg.textContent = 'Te agradezco por ser mi amiga y no haberte alejado a pesar de ciertos problemas. Por ello te hago este pequeño regalo y aunque no sea gran cosa espero te haya gustado; ya dejando lo cursi, disfruta tu día especial y pasala bien.'
 }
