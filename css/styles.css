@@ -1,0 +1,146 @@
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+  font-family: "Parisienne", cursive;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+:root {
+  --titleColor: #c93384;
+  --titleColor2: #e44f9c;
+  --bgColor: #ff69b4;
+  --textBg: #ff97d9;
+  --cardColor: #ffc1ff;
+}
+
+body {
+  min-height: 100vh;
+  padding: 1.875rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: 0% 1%/10% repeat url("/img/bg-gift-icon.png") var(--bgColor);
+}
+
+.card {
+  width: 80%;
+  max-width: 15.625rem;
+  height: 27.5rem;
+  background-color: var(--cardColor);
+  box-shadow: 5px 5px 2px #cc008175;
+  overflow: hidden;
+  transition: transform 1s;
+}
+.card__cover {
+  transition: opacity 0.5s 0.1s;
+}
+.card__cover .text {
+  width: 85%;
+  margin: 0 auto 0.3125rem auto;
+}
+.card__cover .text h1 {
+  padding-bottom: 0.25rem;
+  font-size: 1.875rem;
+  text-align: center;
+  color: var(--titleColor);
+  border-bottom: 0.25rem double;
+}
+.card__cover .text h2 {
+  margin-top: 0.3125rem;
+  text-align: center;
+  color: var(--titleColor2);
+}
+.card__cover .cake__bg {
+  width: 90%;
+  height: 14.0625rem;
+  margin: 0 auto;
+  background: #e44f9c75;
+  border: 0.1875rem dashed #c9338475;
+  border-radius: 50%;
+}
+.card__back {
+  height: 100%;
+  position: relative;
+  transform: rotateY(180deg);
+  transition: opacity 0.5s 0.1s;
+}
+.card__back .banderines {
+  position: absolute;
+  top: 0;
+  opacity: 0.8;
+  z-index: 10;
+}
+.card__back .msg {
+  margin: 0 0.625rem;
+  padding: 0.25rem 0.375rem;
+  text-align: justify;
+  font-size: 1.0625rem;
+  color: #5d0233;
+  background-color: var(--textBg);
+  border-radius: 10px;
+  transform: translateY(75px);
+}
+.card__back .final__pic {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+}
+.card__back .final__pic .bakugo {
+  width: 50%;
+  position: absolute;
+  left: -0.5rem;
+  bottom: -0.3125rem;
+  z-index: 9;
+}
+.card__back .final__pic .deku {
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  bottom: 2.8125rem;
+  transform: translateX(-50%);
+}
+.card__back .final__pic .todoroki {
+  width: 58%;
+  position: absolute;
+  right: -1.375rem;
+  bottom: -0.625rem;
+}
+.card__back .final__pic .heart {
+  position: absolute;
+  left: 50%;
+  bottom: 0.625rem;
+  transform: translateX(-50%);
+  font-size: 1.375rem;
+  text-shadow: 2px 2px 1px rgba(115, 83, 223, 0.5);
+}
+.card.turn {
+  transform: rotateY(180deg);
+}
+.card .hide {
+  opacity: 0;
+}
+.card .hide__display {
+  display: none;
+}
+
+@keyframes moveBG {
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
