@@ -32,6 +32,7 @@ body {
   justify-content: center;
   align-items: center;
   background: 0% 1%/10% repeat url("/img/bg-gift-icon.png") var(--bgColor);
+  animation: moveBG 12s infinite linear;
 }
 
 .card {
