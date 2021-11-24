@@ -4,12 +4,33 @@ html {
   font-family: "Parisienne", cursive;
 }
 
+body {
+  min-height: 100vh;
+  padding: 1.875rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  background-color: #262626;
+  overflow: hidden;
+  transition: background 0.6s 0.2s;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
   font-size: inherit;
   font-family: inherit;
+}
+
+audio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: hidden;
 }
 
 img {
@@ -25,24 +46,122 @@ img {
   --cardColor: #ffc1ff;
 }
 
-body {
-  min-height: 100vh;
-  padding: 1.875rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: 0% 1%/10% repeat url("../img/bg-gift-icon.png") var(--bgColor);
-  animation: moveBG 12s infinite linear;
+.gift {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 62.5rem;
+  z-index: 1;
+}
+.gift__title {
+  font-size: 1.25rem;
+  color: var(--bgColor);
+  transition: opacity 0.5s;
+}
+.gift__top {
+  width: calc(var(--giftSize) + 5px);
+  height: calc(var(--giftSize) + 5px);
+  position: absolute;
+  left: -2.5px;
+  transform: rotateX(-30deg) rotateY(-45deg);
+  transform-style: preserve-3d;
+  z-index: 1;
+  animation: 1.5s forwards;
+}
+.gift__top__loop {
+  width: 215px;
+  position: absolute;
+  transform: translate3d(35px, -120px, 60px) rotateY(55deg);
+}
+.gift__top .face {
+  width: 100%;
+  height: 1.25rem;
+  position: absolute;
+  background-color: #e82769;
+}
+.gift__top .face.top {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #e84069 40%, #97003a 40% 60%, #e84069 60%);
+  transform: rotateX(90deg) translateZ(77.5px);
+  box-shadow: -3px -3px 2px #ffa4cd inset;
+}
+.gift__top .face.top::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background: linear-gradient(to top, transparent 40%, #97003a 40% 60%, transparent 60%);
+}
+.gift__top .face.front {
+  background: linear-gradient(to right, #e84069 40%, #a40054 40% 60%, #e84069 60%);
+  transform: rotateY(0deg) translateZ(77.5px);
+  box-shadow: -3px 0px 2px #ffa4cd inset;
+  filter: drop-shadow(0px 4px 0px #9b001e);
+}
+.gift__top .face.back {
+  transform: rotateY(180deg) translateZ(77.5px);
+}
+.gift__top .face.right {
+  background: linear-gradient(to right, #e84069 40%, #a40054 40% 60%, #e84069 60%);
+  transform: rotateY(90deg) translateZ(77.5px);
+  box-shadow: 1px 0px 2px #ffa4cd inset;
+  filter: drop-shadow(-2px 4px 0px #9b001e);
+}
+.gift__top .face.left {
+  background-color: #e82769;
+  transform: rotateY(-90deg) translateZ(77.5px);
+}
+.gift__top .face.bottom {
+  background-color: #e84069;
+  transform: rotateX(-90deg) translateZ(77.5px);
+}
+.gift__box {
+  width: var(--giftSize);
+  height: var(--giftSize);
+  transform: rotateX(-30deg) rotateY(-45deg);
+  transform-style: preserve-3d;
+}
+.gift__box .face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #e82769;
+}
+.gift__box .face.front {
+  background: linear-gradient(to right, #e84069 40%, #a40054 40% 60%, #e84069 60%);
+  transform: rotateY(0deg) translateZ(75px);
+  box-shadow: -2px 1px 2px #ffa4cd inset;
+}
+.gift__box .face.back {
+  transform: rotateY(180deg) translateZ(75px);
+  box-shadow: -125px -10px 10px 8px #00000075 inset;
+}
+.gift__box .face.right {
+  background: linear-gradient(to right, #e82769 40%, #a40054 40% 60%, #e82769 60%);
+  transform: rotateY(90deg) translateZ(75px);
+  box-shadow: 2px 1px 2px #ffa4cd inset;
+}
+.gift__box .face.left {
+  transform: rotateY(-90deg) translateZ(75px);
+  box-shadow: 125px -10px 10px 8px #00000075 inset;
+}
+.gift__box .face.bottom {
+  transform: rotateX(-90deg) translateZ(75px);
 }
 
 .card {
   width: 80%;
   max-width: 15.625rem;
   height: 27.5rem;
+  transform: scale(0.4);
   background-color: var(--cardColor);
   box-shadow: 5px 5px 2px #cc008175;
   overflow: hidden;
-  transition: transform 1s;
+  opacity: 0;
+  transition: transform 1s, opacity 0.5s 1s;
 }
 .card__cover {
   transition: opacity 0.5s 0.1s;
@@ -85,9 +204,10 @@ body {
 }
 .card__back .msg {
   margin: 0 0.625rem;
-  padding: 0.25rem 0.375rem;
+  padding: 0.25rem 0.5rem;
   text-align: justify;
-  font-size: 1.0625rem;
+  line-height: 1.15625rem;
+  font-size: 1.125rem;
   color: #5d0233;
   background-color: var(--textBg);
   border-radius: 10px;
@@ -128,16 +248,91 @@ body {
   font-size: 1.375rem;
   text-shadow: 2px 2px 1px rgba(115, 83, 223, 0.5);
 }
-.card.turn {
-  transform: rotateY(180deg);
+
+:root {
+  --giftSize: 150px;
 }
-.card .hide {
+
+.star__bg {
+  width: 88%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--titleColor2);
+}
+.star__bg .row__1 i, .star__bg .row__3 i {
+  margin: 0 1.25rem;
+  font-size: 1.375rem;
+  animation: star 1s infinite;
+}
+.star__bg .row__1 i:nth-child(2n+2), .star__bg .row__3 i:nth-child(2n+2) {
+  transform: translate(-10px, 20px);
+  font-size: 1rem;
+  animation-duration: 0.8s;
+}
+.star__bg .row__3 {
+  margin-top: 13.75rem;
+}
+.star__bg .row__2, .star__bg .row__4 {
+  margin-top: 2.1875rem;
+  animation: star 0.5s infinite;
+}
+.star__bg .row__2 i, .star__bg .row__4 i {
+  margin: 0 3.4375rem 0 2.8125rem;
+}
+
+.gift__opened {
+  background: 0% 1%/10% repeat url("../img/bg-gift-icon.png") var(--bgColor);
+  animation: moveBG 12s infinite linear;
+}
+
+.opened {
+  transform: scale(1);
+}
+
+.turn {
+  transform: scale(1) rotateY(180deg);
+  box-shadow: -5px 5px 2px #cc008175;
+}
+
+.hide {
   opacity: 0;
 }
-.card .hide__display {
+.hide__display {
   display: none;
 }
 
+.show__card {
+  opacity: 1;
+  animation: showCard 2s 1s;
+}
+
+@keyframes star {
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes openGift {
+  50% {
+    transform: rotateX(-30deg) rotateY(-45deg) translateY(-80px);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(-45deg) translateX(200px) translateZ(-200px);
+  }
+}
+@keyframes showCard {
+  40% {
+    transform: translateY(-200px) scale(0.4);
+  }
+  60% {
+    transform: translateY(0) scale(0.4);
+  }
+  80%, 100% {
+    transform: scale(1);
+  }
+}
 @keyframes moveBG {
   100% {
     background-position: 100% 100%;
