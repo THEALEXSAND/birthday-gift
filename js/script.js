@@ -45,5 +45,5 @@ const date = new Date();
 const msg = document.querySelector('.msg');
 
 if (date.getDate() >= 25 && date.getDate() <= 30) {
-    msg.textContent = 'Te agradezco por ser mi amiga y no alejarte a pesar de ciertos problemas, sinceramente haz mejorado mi año ;). Por ello te hago este pequeño regalo y aunque no sea gran cosa espero te haya gustado; ya dejando lo cursi, disfruta tu día especial y pasala bien.'
+    msg.textContent = 'Gracias por seguir en mi vida y no haberte alejado a pesar de ciertos problemas pasados, sinceramente haz mejorado mi año ;). Por ello te hago este pequeño regalo y aunque no sea gran cosa espero te haya gustado; ya dejando lo cursi, disfruta tu día especial y pasala bien.'
 }
